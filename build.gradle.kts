@@ -1,8 +1,9 @@
+
 plugins {
 	java
 	id("org.springframework.boot") version "3.2.0"
 	id("io.spring.dependency-management") version "1.1.4"
-	id("com.netflix.dgs.codegen") version "6.0.3"
+	id("com.netflix.dgs.codegen") version "6.1.0"
 }
 
 group = "com.example"
@@ -27,7 +28,6 @@ tasks.withType<Test> {
 }
 
 tasks.generateJava {
-	packageName = "com.example.spotifydemo.codegen"
-	generateClient = true
+	packageName = "com.example.spotifydemo.generated"
 }
 
