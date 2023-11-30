@@ -1,4 +1,4 @@
-package com.example.spotifydemo;
+package com.example.spotifydemo.models;
 
 import com.example.spotifydemo.generated.types.Playlist;
 import com.fasterxml.jackson.annotation.JsonSetter;
