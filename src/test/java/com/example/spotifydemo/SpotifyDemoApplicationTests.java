@@ -1,6 +1,6 @@
 package com.example.spotifydemo;
 
-import com.example.spotifydemo.datasoruces.SpotifyClient;
+import com.example.spotifydemo.datasources.SpotifyClient;
 import com.example.spotifydemo.resolvers.PlaylistDataFetcher;
 import com.netflix.graphql.dgs.DgsQueryExecutor;
 import com.netflix.graphql.dgs.autoconfig.DgsAutoConfiguration;

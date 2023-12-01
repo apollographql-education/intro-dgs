@@ -1,4 +1,4 @@
-package com.example.spotifydemo.datasoruces;
+package com.example.spotifydemo.datasources;
 
 import com.example.spotifydemo.models.FeaturedPlaylists;
 import com.example.spotifydemo.models.MappedPlaylist;
