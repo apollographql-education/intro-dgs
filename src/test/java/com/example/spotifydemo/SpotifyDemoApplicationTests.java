@@ -1,7 +1,7 @@
 package com.example.spotifydemo;
 
 import com.example.spotifydemo.datasources.SpotifyClient;
-import com.example.spotifydemo.resolvers.PlaylistDataFetcher;
+import com.example.spotifydemo.datafetchers.PlaylistDataFetcher;
 import com.netflix.graphql.dgs.DgsQueryExecutor;
 import com.netflix.graphql.dgs.autoconfig.DgsAutoConfiguration;
 import org.junit.jupiter.api.Test;

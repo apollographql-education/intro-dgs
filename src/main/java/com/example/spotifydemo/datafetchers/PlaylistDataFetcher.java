@@ -1,4 +1,4 @@
-package com.example.spotifydemo.resolvers;
+package com.example.spotifydemo.datafetchers;
 
 import com.example.spotifydemo.datasources.SpotifyClient;
 import com.example.spotifydemo.generated.types.AddItemsToPlaylistInput;
