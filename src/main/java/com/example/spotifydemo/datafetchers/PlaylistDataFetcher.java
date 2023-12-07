@@ -1,38 +1,37 @@
 package com.example.spotifydemo.datafetchers;
-
-import com.example.spotifydemo.datasources.SpotifyClient;
 import com.example.spotifydemo.generated.types.AddItemsToPlaylistInput;
 import com.example.spotifydemo.generated.types.AddItemsToPlaylistPayload;
-import com.example.spotifydemo.generated.types.Playlist;
 import com.example.spotifydemo.models.FeaturedPlaylists;
+import com.netflix.graphql.dgs.DgsComponent;
+import com.netflix.graphql.dgs.DgsQuery;
+import com.netflix.graphql.dgs.DgsMutation;
+import com.netflix.graphql.dgs.DgsData;
+import com.netflix.graphql.dgs.DgsDataFetchingEnvironment;
 import com.example.spotifydemo.models.MappedPlaylist;
-import com.example.spotifydemo.models.Snapshot;
-import com.netflix.graphql.dgs.*;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.ArrayList;
 import java.util.List;
-
+import com.example.spotifydemo.datasources.SpotifyClient;
+import org.springframework.beans.factory.annotation.Autowired;
+import com.netflix.graphql.dgs.InputArgument;
+import com.example.spotifydemo.models.Snapshot;
+import com.example.spotifydemo.generated.types.Playlist;
+import java.util.Objects;
 @DgsComponent
 public class PlaylistDataFetcher {
-
     private final SpotifyClient spotifyClient;
 
     @Autowired
     public PlaylistDataFetcher(SpotifyClient spotifyClient) {
         this.spotifyClient = spotifyClient;
     }
-
     @DgsQuery
     public List<MappedPlaylist> featuredPlaylists() {
+        FeaturedPlaylists response = spotifyClient.featuredPlaylistsRequest();
+        return response.getPlaylists();
+    };
 
-        FeaturedPlaylists featuredPlaylists = spotifyClient.featuredPlaylists();
-
-        if (featuredPlaylists != null) {
-            return featuredPlaylists.getPlaylists();
-        }
-
-        return new ArrayList<>();
+    @DgsQuery
+    public MappedPlaylist playlist(@InputArgument String id) {
+        return spotifyClient.playlistRequest(id);
     }
 
     @DgsMutation
@@ -41,13 +40,13 @@ public class PlaylistDataFetcher {
         Integer position = input.getPosition();
         List<String> uris = input.getUris();
 
-        AddItemsToPlaylistPayload payload = new AddItemsToPlaylistPayload();
-
         Snapshot snapshot = spotifyClient.addItemsToPlaylist(playlistId, position, String.join(",", uris));
+
+        AddItemsToPlaylistPayload payload = new AddItemsToPlaylistPayload();
 
         if (snapshot != null) {
             String snapshotId = snapshot.getId();
-            if (snapshotId == playlistId) {
+            if (Objects.equals(snapshotId, playlistId)) {
                 Playlist playlist = new Playlist();
                 playlist.setId(playlistId);
 
@@ -59,7 +58,6 @@ public class PlaylistDataFetcher {
                 return payload;
             }
         }
-
         payload.setCode(500);
         payload.setMessage("could not update playlist");
         payload.setSuccess(false);
@@ -69,20 +67,16 @@ public class PlaylistDataFetcher {
     }
 
     @DgsData(parentType="AddItemsToPlaylistPayload", field="playlist")
-    public MappedPlaylist updatedPlaylist(DgsDataFetchingEnvironment dfe) {
+    public MappedPlaylist getPayloadPlaylist(DgsDataFetchingEnvironment dfe) {
         AddItemsToPlaylistPayload payload = dfe.getSource();
         Playlist playlist = payload.getPlaylist();
 
         if (playlist != null) {
             String playlistId = playlist.getId();
-            return spotifyClient.getPlaylist(playlistId);
+            return spotifyClient.playlistRequest(playlistId);
         }
 
         return null;
     }
 
-    @DgsQuery
-    public MappedPlaylist playlist(@InputArgument String id) {
-        return spotifyClient.getPlaylist(id);
-    }
 }

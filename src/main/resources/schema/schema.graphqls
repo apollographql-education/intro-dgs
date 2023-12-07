@@ -1,19 +1,39 @@
-"Custom Annotation"
-directive @annotate(
+"Spotify catalog information for a single playlist."
+type Playlist {
+    "The Spotify ID for the playlist."
+    id: ID!
+    "The name of the playlist."
     name: String!
-    type: String!
-    inputs: IgnoreUnknownInput
-) repeatable on OBJECT | FIELD_DEFINITION | INPUT_OBJECT | INPUT_FIELD_DEFINITION
+    "The playlist description. _Only returned for modified, verified playlists, otherwise null_."
+    description: String
+    "The tracks of the playlist."
+    tracks: [Track!]!
+}
 
-input IgnoreUnknownInput {
-    ignoreUnknown: Boolean!
+"Spotify catalog information for a track."
+type Track {
+    "The Spotify ID for the track."
+    id: ID!
+    "The name of the track"
+    name: String!
+    "A link to a 30 second preview (MP3 format) of the track. Can be null"
+    durationMs: Int!
+    "Whether or not the track has explicit lyrics (true = yes it does; false = no it does not OR unknown)"
+    explicit: Boolean!
+    "The Spotify URI for the track."
+    uri: String!
 }
 
 type Query {
     "A list of Spotify featured playlists (shown, for example, on a Spotify player's 'Browse' tab)."
-    featuredPlaylists: [Playlist]
+    featuredPlaylists: [Playlist!]!
     "A playlist owned by a Spotify user."
     playlist(id: ID!): Playlist
+}
+
+type Mutation {
+    "Add one or more items to a user's playlist."
+    addItemsToPlaylist(input: AddItemsToPlaylistInput!): AddItemsToPlaylistPayload
 }
 
 type AddItemsToPlaylistPayload {
@@ -27,42 +47,11 @@ type AddItemsToPlaylistPayload {
     playlist: Playlist
 }
 
-type Mutation {
-    "Add one or more items to a user's playlist."
-    addItemsToPlaylist(input: AddItemsToPlaylistInput!): AddItemsToPlaylistPayload!
-}
-
 input AddItemsToPlaylistInput {
     "The Spotify ID of the playlist."
     playlistId: ID!
     "The position to insert the items, a zero-based index. For example, to insert the items in the first position: position=0; to insert the items in the third position: position=2. If omitted, the items will be appended to the playlist. Items are added in the order they are listed in the query string or request body."
-    position: Int = 0
+    position: Int
     "A comma-separated list of Spotify URIs to add, can be track or episode URIs. A maximum of 100 items can be added in one request."
     uris: [String!]!
-}
-
-"Spotify catalog information for a single playlist."
-type Playlist @annotate(name: "JsonIgnoreProperties", type: "annotation", inputs: { ignoreUnknown: true }) {
-    "The Spotify ID for the playlist."
-    id: ID!
-    "The name of the playlist."
-    name: String!
-    "The playlist description. _Only returned for modified, verified playlists, otherwise null_."
-    description: String
-    "The tracks of the playlist."
-    tracks: [Track]
-}
-
-"Spotify catalog information for a track."
-type Track @annotate(name: "JsonIgnoreProperties", type: "annotation", inputs: { ignoreUnknown: true }) {
-    "The Spotify ID for the track."
-    id: ID!
-    "The name of the track"
-    name: String!
-    "A link to a 30 second preview (MP3 format) of the track. Can be null"
-    durationMs: Int!
-    "Whether or not the track has explicit lyrics (true = yes it does; false = no it does not OR unknown)"
-    explicit: Boolean!
-    "The Spotify URI for the track."
-    uri: String!
 }

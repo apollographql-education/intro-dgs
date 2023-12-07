@@ -31,7 +31,5 @@ tasks.withType<Test> {
 
 tasks.generateJava {
 	packageName = "com.example.spotifydemo.generated"
-	generateCustomAnnotations = true
-	includeImports = mutableMapOf("annotation" to "com.fasterxml.jackson.annotation")
 }
 
