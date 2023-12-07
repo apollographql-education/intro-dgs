@@ -12,7 +12,8 @@ public class FeaturedPlaylists {
     public void setPlaylists(JsonNode playlists) throws IOException {
         JsonNode playlistItems = playlists.get("items");
         ObjectMapper mapper = new ObjectMapper();
-        this.playlists = mapper.readValue(playlistItems.traverse(), new TypeReference<List<MappedPlaylist>>(){});
+        this.playlists = mapper.readValue(playlistItems.traverse(), new TypeReference<>() {
+        });
     }
     public List<MappedPlaylist> getPlaylists() {
         return this.playlists;
