@@ -9,10 +9,11 @@ import org.springframework.web.client.RestClient;
 @Component
 public class SpotifyClient {
     private static final String SPOTIFY_API_URL = "https://spotify-demo-api-fe224840a08c.herokuapp.com/v1";
+
     private final RestClient builder = RestClient.builder().baseUrl(SPOTIFY_API_URL).build();
 
     public FeaturedPlaylists featuredPlaylistsRequest() {
-        return builder
+        return client
                 .get()
                 .uri("/browse/featured-playlists")
                 .retrieve()
@@ -20,7 +21,7 @@ public class SpotifyClient {
     }
 
     public MappedPlaylist playlistRequest(String playlistId) {
-        return builder
+        return client
                 .get()
                 .uri("/playlists/{playlist_id}", playlistId)
                 .retrieve()
@@ -28,7 +29,7 @@ public class SpotifyClient {
     }
 
     public Snapshot addItemsToPlaylist(String playlistId, Integer position, String uris) {
-        return builder
+        return client
                 .post()
                 .uri(uriBuilder -> uriBuilder
                         .path("/playlists/{playlist_id}/tracks")
