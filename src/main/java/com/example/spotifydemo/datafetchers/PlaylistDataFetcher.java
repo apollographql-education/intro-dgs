@@ -45,7 +45,7 @@ public class PlaylistDataFetcher {
         AddItemsToPlaylistPayload payload = new AddItemsToPlaylistPayload();
 
         if (snapshot != null) {
-            String snapshotId = snapshot.getId();
+            String snapshotId = snapshot.id();
             if (Objects.equals(snapshotId, playlistId)) {
                 Playlist playlist = new Playlist();
                 playlist.setId(playlistId);
