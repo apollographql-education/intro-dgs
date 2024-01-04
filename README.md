@@ -1,6 +1,6 @@
 # (Odyssey Course) Intro to GraphQL with Java & DGS
 
-Welcome to the starter code for **Intro to GraphQL with with Java & DGS**. You can find the [course lessons and instructions](https://apollographql.com/tutorials/intro-dgs) on Odyssey, [Apollo](https://apollographql.com)'s learning platform.
+Welcome to the starter code for **Intro to GraphQL with Java & DGS**. You can find the [course lessons and instructions](https://apollographql.com/tutorials/intro-dgs) on Odyssey, [Apollo](https://apollographql.com)'s learning platform.
 
 ## How to use this repo
 
@@ -47,7 +47,7 @@ These additional references should also help you:
 
 This project has been configured to use the Netflix DGS Codegen plugin.
 This plugin can be used to generate client files for accessing remote GraphQL services.
-The default setup assumes that the GraphQL schema file for the remote service is added to the `src/main/resources/graphql-client/` location.
+The default setup assumes that the GraphQL schema file for the remote service is added to the `src/main/resources/schema/` location.
 
 You can learn more about the [plugin configuration options](https://netflix.github.io/dgs/generating-code-from-schema/#configuring-code-generation) and
 [how to use the generated types](https://netflix.github.io/dgs/generating-code-from-schema/) to adapt the default setup.
