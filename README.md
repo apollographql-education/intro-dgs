@@ -1,6 +1,6 @@
 # (Odyssey Course) Intro to GraphQL with Java & DGS
 
-Welcome to the starter code for **Intro to GraphQL with with Java & DGS**. You can find the [course lessons and instructions](https://apollographql.com/tutorials/intro-dgs) on Odyssey, [Apollo](https://apollographql.com)'s learning platform.
+Welcome to the starter code for **Intro to GraphQL with Java & DGS**. You can find the [course lessons and instructions](https://apollographql.com/tutorials/intro-dgs) on Odyssey, [Apollo](https://apollographql.com)'s learning platform.
 
 ## How to use this repo
 
