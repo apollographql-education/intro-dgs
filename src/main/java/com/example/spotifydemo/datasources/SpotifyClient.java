@@ -1,6 +1,6 @@
 package com.example.spotifydemo.datasources;
 
-import com.example.spotifydemo.models.PlaylistList;
+import com.example.spotifydemo.models.PlaylistCollection;
 import com.example.spotifydemo.models.MappedPlaylist;
 import com.example.spotifydemo.models.Snapshot;
 import org.springframework.stereotype.Component;
@@ -12,12 +12,12 @@ public class SpotifyClient {
 
     private final RestClient client = RestClient.builder().baseUrl(SPOTIFY_API_URL).build();
 
-    public PlaylistList featuredPlaylistsRequest() {
+    public PlaylistCollection featuredPlaylistsRequest() {
         return client
                 .get()
                 .uri("/browse/featured-playlists")
                 .retrieve()
-                .body(PlaylistList.class);
+                .body(PlaylistCollection.class);
     }
 
     public MappedPlaylist playlistRequest(String playlistId) {
