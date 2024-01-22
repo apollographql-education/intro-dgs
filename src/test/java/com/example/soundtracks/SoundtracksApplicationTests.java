@@ -1,10 +1,10 @@
-package com.example.spotifydemo;
+package com.example.soundtracks;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SpotifyDemoApplicationTests {
+class SoundtracksApplicationTests {
 
 	@Test
 	void contextLoads() {
