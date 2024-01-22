@@ -1,7 +1,7 @@
 package com.example.spotifydemo.datafetchers;
 import com.example.spotifydemo.generated.types.AddItemsToPlaylistInput;
 import com.example.spotifydemo.generated.types.AddItemsToPlaylistPayload;
-import com.example.spotifydemo.models.FeaturedPlaylists;
+import com.example.spotifydemo.models.PlaylistCollection;
 import com.netflix.graphql.dgs.DgsComponent;
 import com.netflix.graphql.dgs.DgsQuery;
 import com.netflix.graphql.dgs.DgsMutation;
@@ -25,7 +25,7 @@ public class PlaylistDataFetcher {
     }
     @DgsQuery
     public List<MappedPlaylist> featuredPlaylists() {
-        FeaturedPlaylists response = spotifyClient.featuredPlaylistsRequest();
+        PlaylistCollection response = spotifyClient.featuredPlaylistsRequest();
         return response.getPlaylists();
     };
 
