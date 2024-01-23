@@ -28,6 +28,6 @@ tasks.withType<Test> {
 }
 
 tasks.generateJava {
-	packageName = "com.example.spotifydemo.generated"
+	packageName = "com.example.soundtracks.generated"
 }
 
