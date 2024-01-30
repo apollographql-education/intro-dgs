@@ -28,12 +28,11 @@ public class SpotifyClient {
                 .body(MappedPlaylist.class);
     }
 
-    public Snapshot addItemsToPlaylist(String playlistId, Integer position, String uris) {
+    public Snapshot addItemsToPlaylist(String playlistId, String uris) {
         return client
                 .post()
                 .uri(uriBuilder -> uriBuilder
                         .path("/playlists/{playlist_id}/tracks")
-                        .queryParam("position", position)
                         .queryParam("uris", uris)
                         .build(playlistId))
                 .retrieve()

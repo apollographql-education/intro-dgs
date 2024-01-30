@@ -39,10 +39,9 @@ public class PlaylistDataFetcher {
     @DgsMutation
     public AddItemsToPlaylistPayload addItemsToPlaylist(@InputArgument AddItemsToPlaylistInput input) {
         String playlistId = input.getPlaylistId();
-        Integer position = input.getPosition();
         List<String> uris = input.getUris();
 
-        Snapshot snapshot = spotifyClient.addItemsToPlaylist(playlistId, position, String.join(",", uris));
+        Snapshot snapshot = spotifyClient.addItemsToPlaylist(playlistId, String.join(",", uris));
 
         AddItemsToPlaylistPayload payload = new AddItemsToPlaylistPayload();
 
