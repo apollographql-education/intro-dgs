@@ -1,19 +1,21 @@
-package com.example.spotifydemo.datafetchers;
-import com.example.spotifydemo.generated.types.AddItemsToPlaylistInput;
-import com.example.spotifydemo.generated.types.AddItemsToPlaylistPayload;
-import com.example.spotifydemo.models.PlaylistCollection;
+package com.example.soundtracks.datafetchers;
+import com.example.soundtracks.datasources.SpotifyClient;
+import com.example.soundtracks.models.MappedPlaylist;
+import com.example.soundtracks.models.PlaylistCollection;
+import com.example.soundtracks.models.Snapshot;
+import com.example.soundtracks.generated.types.AddItemsToPlaylistInput;
+import com.example.soundtracks.generated.types.AddItemsToPlaylistPayload;
 import com.netflix.graphql.dgs.DgsComponent;
 import com.netflix.graphql.dgs.DgsQuery;
 import com.netflix.graphql.dgs.DgsMutation;
 import com.netflix.graphql.dgs.DgsData;
 import com.netflix.graphql.dgs.DgsDataFetchingEnvironment;
-import com.example.spotifydemo.models.MappedPlaylist;
+
 import java.util.List;
-import com.example.spotifydemo.datasources.SpotifyClient;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import com.netflix.graphql.dgs.InputArgument;
-import com.example.spotifydemo.models.Snapshot;
-import com.example.spotifydemo.generated.types.Playlist;
+import com.example.soundtracks.generated.types.Playlist;
 import java.util.Objects;
 @DgsComponent
 public class PlaylistDataFetcher {

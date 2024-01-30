@@ -1,33 +1,33 @@
-"Spotify catalog information for a single playlist."
+"A curated collection of tracks designed for a specific activity or mood."
 type Playlist {
-    "The Spotify ID for the playlist."
+    "The ID for the playlist."
     id: ID!
     "The name of the playlist."
     name: String!
-    "The playlist description. _Only returned for modified, verified playlists, otherwise null_."
+    "Describes the playlist, what to expect and entices the user to listen."
     description: String
     "The tracks of the playlist."
     tracks: [Track!]!
 }
 
-"Spotify catalog information for a track."
+"A single audio file, usually a song."
 type Track {
-    "The Spotify ID for the track."
+    "The ID for the track."
     id: ID!
     "The name of the track"
     name: String!
-    "A link to a 30 second preview (MP3 format) of the track. Can be null"
+    "The track length in milliseconds."
     durationMs: Int!
     "Whether or not the track has explicit lyrics (true = yes it does; false = no it does not OR unknown)"
     explicit: Boolean!
-    "The Spotify URI for the track."
+    "The URI for the track, usually a Spotify link."
     uri: String!
 }
 
 type Query {
-    "A list of Spotify featured playlists (shown, for example, on a Spotify player's 'Browse' tab)."
+    "Playlists hand-picked to be featured to all users."
     featuredPlaylists: [Playlist!]!
-    "A playlist owned by a Spotify user."
+    "Retrieves a specific playlist."
     playlist(id: ID!): Playlist
 }
 
@@ -48,10 +48,8 @@ type AddItemsToPlaylistPayload {
 }
 
 input AddItemsToPlaylistInput {
-    "The Spotify ID of the playlist."
+    "The ID of the playlist."
     playlistId: ID!
-    "The position to insert the items, a zero-based index. For example, to insert the items in the first position: position=0; to insert the items in the third position: position=2. If omitted, the items will be appended to the playlist. Items are added in the order they are listed in the query string or request body."
-    position: Int
-    "A comma-separated list of Spotify URIs to add, can be track or episode URIs. A maximum of 100 items can be added in one request."
+    "A comma-separated list of Spotify URIs to add."
     uris: [String!]!
 }

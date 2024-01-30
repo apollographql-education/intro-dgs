@@ -1,6 +1,6 @@
-package com.example.spotifydemo.models;
+package com.example.soundtracks.models;
 
-import com.example.spotifydemo.generated.types.Playlist;
+import com.example.soundtracks.generated.types.Playlist;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.databind.JsonNode;

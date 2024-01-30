@@ -1,7 +1,7 @@
-package com.example.spotifydemo;
+package com.example.soundtracks;
 
-import com.example.spotifydemo.datasources.SpotifyClient;
-import com.example.spotifydemo.datafetchers.PlaylistDataFetcher;
+import com.example.soundtracks.datasources.SpotifyClient;
+import com.example.soundtracks.datafetchers.PlaylistDataFetcher;
 import com.netflix.graphql.dgs.DgsQueryExecutor;
 import com.netflix.graphql.dgs.autoconfig.DgsAutoConfiguration;
 import org.junit.jupiter.api.Test;
@@ -13,7 +13,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(classes = {DgsAutoConfiguration.class, PlaylistDataFetcher.class, SpotifyClient.class})
-class SpotifyDemoApplicationTests {
+class SoundtracksApplicationTests {
 
 	@Autowired
 	DgsQueryExecutor dgsQueryExecutor;
